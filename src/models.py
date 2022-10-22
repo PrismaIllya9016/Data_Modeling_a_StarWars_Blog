@@ -52,6 +52,7 @@ class Characters (Base):
 
     __tablename__ = 'planets'
     id = Column(Integer, primary_key=True)
+    character_id = Column(String(250), ForeignKey('characters.id'))
     name = Column(String(250))
     url = Column(String(250))
     diameter = Column(Integer)
@@ -62,13 +63,11 @@ class Characters (Base):
     climate = Column(String(250))
     terrain = Column(String(250))
     surface_water = Column(Integer)
+    characters = relationship(Characters)
 
 
 class Vehicles(Base):
     __tablename__ = 'vehicles'
-
-class Address(Base):
-    __tablename__ = 'address'
     
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
@@ -84,8 +83,8 @@ class Address(Base):
     cargo_capacity = Column(Integer)
     consumables = Column(String(250))
     films = Column(String(250))
-    pilots = Column(String(250))
-
+    pilots = Column(String(250), ForeignKey('characters.id'))
+    characters = relationship(Characters)
 
 
 
